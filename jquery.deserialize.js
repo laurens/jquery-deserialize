@@ -1,8 +1,12 @@
 (function ($) {
     $.deserialize = function (str, options) {
-        var pairs = str.split(/&amp;|&/i),
+        var pairs,
             h = {},
             options = options || {};
+        if (!str.length) {
+          return h;
+        }
+        pairs = str.split(/&amp;|&/i)
         for(var i = 0; i < pairs.length; i++) {
             var kv = pairs[i].split('=');
             kv[0] = decodeURIComponent(kv[0]);
